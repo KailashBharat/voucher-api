@@ -12,13 +12,13 @@ import helmet from "helmet";
 import http from "http";
 import cors from "cors";
 
-import { router } from "./routes";
 import { buildSchema } from "type-graphql";
 import winston from "winston";
 import morgan from "morgan";
 
-import { VoucherResolver } from "./graphql/resolvers/voucher";
+import { VoucherResolver } from "./graphql/resolvers/voucher.resolver";
 import { myDataSource } from "./app-data-source";
+import { CampaignResolver } from "./graphql/resolvers/campaign.resolver";
 
 async function main() {
   const connection = await myDataSource.initialize();
@@ -30,7 +30,7 @@ async function main() {
   }
 
   const schema = await buildSchema({
-    resolvers: [VoucherResolver],
+    resolvers: [VoucherResolver, CampaignResolver],
   });
 
   const app = express();
@@ -54,7 +54,6 @@ async function main() {
 
   app.disable("x-powered-by");
   app.use(helmet());
-  app.use(router);
   app.use(
     morgan(":method :url :status :res[content-length] - :response-time ms")
   );

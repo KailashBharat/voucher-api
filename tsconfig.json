@@ -20,6 +20,6 @@
     "strictFunctionTypes": true,                      /* When assigning functions, check to ensure parameters and the return values are subtype-compatible. */
     "allowUnusedLabels": false,                        /* Disable error reporting for unused labels. */
     "allowUnreachableCode": false,                     /* Disable error reporting for unreachable code. */
-    "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
-  }
+    "skipLibCheck": true                                  /* Skip type checking all .d.ts files. */
+  },
 }
