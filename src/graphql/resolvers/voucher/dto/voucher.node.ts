@@ -1,6 +1,6 @@
-import { Campaign } from "@//entity/Campaign";
 import { IsDate } from "class-validator";
 import { Field, ID, ObjectType } from "type-graphql";
+import { CampaignDto } from "../../campaign/dto/campaign.node";
 
 @ObjectType()
 export class VoucherDto {
@@ -13,8 +13,8 @@ export class VoucherDto {
   @Field()
   description: string;
 
-  @Field(() => Campaign)
-  campaign: Campaign;
+  @Field(() => CampaignDto)
+  campaign: CampaignDto;
 
   @Field()
   @IsDate()

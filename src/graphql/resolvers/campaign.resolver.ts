@@ -1,26 +1,27 @@
-import { myDataSource } from "../../app-data-source";
-import { Campaign } from "../../entity/Campaign";
+import { Campaign } from "@/entity/Campaign";
+import { myDataSource } from "@/app-data-source";
 import { Resolver, Query, Arg, Mutation } from "type-graphql";
+import { CampaignDto } from "./campaign/dto/campaign.node";
 
 @Resolver()
 export class CampaignResolver {
   private campaignRepo = myDataSource.getRepository(Campaign);
 
-  @Query(() => Campaign, { description: "Returns a campaign" })
-  async campaign(@Arg("name") name: string): Promise<Campaign | null> {
+  @Query(() => CampaignDto, { description: "Returns a campaign" })
+  async campaign(@Arg("name") name: string): Promise<CampaignDto | null> {
     return await this.campaignRepo.findOne({ where: { name } });
   }
 
-  @Query(() => [Campaign], { description: "Returns all campaigns" })
-  async campaigns(): Promise<Campaign[] | null> {
+  @Query(() => [CampaignDto], { description: "Returns all campaigns" })
+  async campaigns(): Promise<CampaignDto[] | null> {
     return await this.campaignRepo.find();
   }
 
-  @Mutation(() => Campaign, { description: "Creates a campaign" })
+  @Mutation(() => CampaignDto, { description: "Creates a campaign" })
   async create(
     @Arg("name") name: string,
     @Arg("description") description: string
-  ): Promise<Campaign> {
+  ): Promise<CampaignDto> {
     console.log({ name, description });
     return await this.campaignRepo.create({ description, name }).save();
   }

@@ -1,7 +1,9 @@
-import { Campaign } from "../../../../entity/Campaign"
-import { Query } from "type-graphql"
+import { Campaign } from "../../../../entity/Campaign";
+import { Repository } from "typeorm";
 
-@Query(() => Campaign, { description: "Returns a campaign" })
-async campaign(@Arg("name") name: string): Promise<Campaign | null> {
-  return await this.campaignRepo.findOne({ where: { name } });
+export async function getCampaign(
+  name: string,
+  repo: Repository<Campaign>
+): Promise<Campaign | null> {
+  return await repo.findOne({ where: { name } });
 }

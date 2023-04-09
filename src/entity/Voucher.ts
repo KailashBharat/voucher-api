@@ -19,11 +19,11 @@ export class Voucher extends BaseEntity {
   @Column()
   description: string;
 
-  @Column()
-  campaign: Campaign;
+  // @Column()
+  // campaign: Campaign;
 
   @ManyToOne(() => Campaign, (campaign) => campaign.vouchers)
-  _campaign: Campaign;
+  campaign: Campaign;
 
   @CreateDateColumn()
   createdAt: Date;

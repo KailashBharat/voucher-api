@@ -4,7 +4,7 @@ export const myDataSource = new DataSource({
   name: "default",
   type: "postgres",
   host: process.env.MYSQL_HOST,
-  port: +(process.env.MYSQL_PORT as string),
+  port: +(process.env.POSTGRES_PORT as string),
   username: "Kailash",
   password: "Kailash",
   database: process.env.MYSQL_DATABASE,

@@ -7,8 +7,8 @@
     "build": "tsc",
     "dev": "nodemon",
     "prod": "node dist/index.js",
-    "docker:mysql": "dotenv -- cross-var docker run -d --name voucher -e MYSQL_ROOT_PASSWORD=%MYSQL_ROOT_PASSWORD% -e MYSQL_PASSWORD=%MYSQL_PASSWORD% -e MYSQL_USER=%MYSQL_USER% -e MYSQL_DB=%MYSQL_DATABASE% mysql:latest",
-    "docker:postgres": "dotenv -- cross-var docker run -d --name voucher -p %MYSQL_PORT%:5432 -e POSTGRES_PASSWORD=%MYSQL_PASSWORD% -e POSTGRES_USER=%MYSQL_USER% -e POSTGRES_DB=%MYSQL_DATABASE% postgres:latest"
+    "docker:mysql": "dotenv -- cross-var docker run -d --name voucher-mysql -p %MYSQL_PORT%:3306 -e MYSQL_ROOT_PASSWORD=%MYSQL_ROOT_PASSWORD% mysql:latest",
+    "docker:postgres": "dotenv -- cross-var docker run -d --name voucher-postgres -p %POSTGRES_PORT%:5432 -e POSTGRES_PASSWORD=%MYSQL_PASSWORD% -e POSTGRES_USER=%MYSQL_USER% -e POSTGRES_DB=%MYSQL_DATABASE% postgres:latest"
   },
   "keywords": [],
   "author": "",
@@ -39,6 +39,7 @@
     "@types/node": "^18.15.11",
     "cross-var": "^1.1.0",
     "dotenv-cli": "^7.2.1",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "tsconfig-paths": "^4.2.0"
   }
 }
