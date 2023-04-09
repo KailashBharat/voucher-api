@@ -7,12 +7,12 @@ import {
   ApolloServerPluginLandingPageLocalDefault,
   ApolloServerPluginLandingPageProductionDefault,
 } from "@apollo/server/plugin/landingPage/default";
+import { ResolverData, buildSchema } from "type-graphql";
+import { Container } from "typeorm-typedi-extensions";
 import express from "express";
 import helmet from "helmet";
 import http from "http";
 import cors from "cors";
-
-import { buildSchema } from "type-graphql";
 import winston from "winston";
 import morgan from "morgan";
 
@@ -31,6 +31,7 @@ async function main() {
 
   const schema = await buildSchema({
     resolvers: [VoucherResolver, CampaignResolver],
+    container: Container,
   });
 
   const app = express();

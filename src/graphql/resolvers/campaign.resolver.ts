@@ -2,10 +2,13 @@ import { Campaign } from "@/entity/Campaign";
 import { myDataSource } from "@/app-data-source";
 import { Resolver, Query, Arg, Mutation } from "type-graphql";
 import { CampaignDto } from "./campaign/dto/campaign.node";
-
+import { Repository } from "typeorm";
+import { Service } from "typedi";
+import { InjectRepository } from "typeorm-typedi-extensions";
+@Service()
 @Resolver()
 export class CampaignResolver {
-  private campaignRepo = myDataSource.getRepository(Campaign);
+  constructor(@InjectRepository(Campaign) private readonly campaignRepo: Repository<Campaign>) {}
 
   @Query(() => CampaignDto, { description: "Returns a campaign" })
   async campaign(@Arg("name") name: string): Promise<CampaignDto | null> {

@@ -1,14 +1,21 @@
 import { Resolver, Query, Mutation, Arg } from "type-graphql";
+import { Service } from "typedi";
 import { myDataSource } from "@/app-data-source";
 import { Voucher } from "@/entity/Voucher";
 import { Campaign } from "@/entity/Campaign";
 import { VoucherDto } from "./voucher/dto/voucher.node";
 import { CampaignDto } from "./campaign/dto/campaign.node";
+import { Repository } from "typeorm";
+import { InjectRepository } from "typeorm-typedi-extensions";
 
 @Resolver()
 export class VoucherResolver {
-  private campaignRepo = myDataSource.getRepository(Campaign);
-  private voucherRepo = myDataSource.getRepository(Voucher);
+  constructor(
+    @InjectRepository(Campaign) private readonly campaignRepo: Repository<Campaign>,
+    @InjectRepository(Voucher) private readonly voucherRepo: Repository<Voucher>
+  ) {}
+  // private campaignRepo = myDataSource.getRepository(Campaign);
+  // private voucherRepo = myDataSource.getRepository(Voucher);
 
   @Query(() => String, { name: "hello", description: "Returns a greeting" })
   async hello() {
@@ -49,7 +56,7 @@ export class VoucherResolver {
       .create({
         campaign: { ...campaignExists },
         name,
-        description, 
+        description,
       })
       .save();
 
