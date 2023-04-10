@@ -1,3 +1,13 @@
+import { CreateVoucherResolver } from "./mutation/create-voucher.resolver"
+import { VoucherResolver } from "./query/voucher.resolver"
+import { VouchersResolver } from "./query/vouchers.resolver"
+
 export * from "./dto"
-export * from "./mutation"
-export * from "./query"
+
+export const VoucherGraphQLResolvers = [
+    //  Queries
+    VoucherResolver,
+    VouchersResolver,
+    //  Mutations
+    CreateVoucherResolver
+]

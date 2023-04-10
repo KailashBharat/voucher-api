@@ -11,8 +11,8 @@ import { Campaign } from "./Campaign";
 
 @Entity()
 export class User extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn("uuid")
+  id: string;
 
   @Column()
   name: string;
@@ -23,10 +23,10 @@ export class User extends BaseEntity {
   @Column(() => Number)
   age: number;
 
-  @Column()
+  @Column({ default: null, nullable: true })
   ip: string;
 
-  @Column()
+  @Column({ default: "USER" })
   role: string;
 
   @CreateDateColumn()

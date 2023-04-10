@@ -16,11 +16,10 @@ import { buildSchema } from "type-graphql";
 import winston from "winston";
 import morgan from "morgan";
 
-import { VoucherResolver } from "./graphql/resolvers/voucher.resolver";
 import { myDataSource } from "./app-data-source";
-import { CampaignResolver } from "./graphql/resolvers/campaign.resolver";
 import { authChecker } from "./graphql/auth/auth-checker";
 import { Context } from "./graphql/auth/context.node";
+import { GraphQLResolvers } from "./graphql";
 
 async function main() {
   const connection = await myDataSource.initialize();
@@ -32,7 +31,7 @@ async function main() {
   }
 
   const schema = await buildSchema({
-    resolvers: [VoucherResolver, CampaignResolver],
+    resolvers: <any>GraphQLResolvers,
     authChecker,
   });
 
@@ -68,7 +67,7 @@ async function main() {
         // mock user
         const ctx: Context = {
           user: {
-            id: 2,
+            id: "2",
             name: "kailash",
             role: "ADMIN",
           },
@@ -79,7 +78,7 @@ async function main() {
   );
   httpServer.listen({ port }, () => {
     console.log(
-      `Server Listening on port ${port}\nVisit: http://localhost:${port}/graphql or http://localhost:${port}`
+      `Server Listening on port ${port}\nVisit: http://localhost:${port}/graphql or http://localhost:${port}\nIf GraphQL sandbox doesn't load, go to https://flyby-locations-sub.herokuapp.com/ and enter 'http://localhost:${port}' in the input bar in the top left corner`
     );
   });
 }

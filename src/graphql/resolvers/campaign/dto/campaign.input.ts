@@ -7,4 +7,7 @@ export class CampaignInput {
 
   @Field()
   name: string;
+
+  @Field()
+  userId: string;
 }

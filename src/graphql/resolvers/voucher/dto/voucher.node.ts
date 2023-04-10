@@ -6,8 +6,8 @@ import { UserDto } from "../../user/dto/user.node";
 
 @ObjectType()
 export class VoucherDto {
-  @Field(() => ID)
-  id: number;
+  @Field()
+  id: string;
 
   @Field()
   name: string;

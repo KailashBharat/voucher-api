@@ -7,7 +7,7 @@ import { UserDto } from "../../user/dto/user.node";
 @ObjectType()
 export class CampaignDto {
   @Field()
-  id: number;
+  id: string;
 
   @Field(() => [VoucherDto])
   vouchers: VoucherDto[];

@@ -1,9 +1,14 @@
-import { Campaign } from "../../../../entity/Campaign";
-import { Repository } from "typeorm";
+import { Resolver, Query, Mutation, Arg, Args } from "type-graphql";
+import { myDataSource } from "@/app-data-source";
+import { Campaign } from "@/entity/Campaign";
+import { CampaignDto } from "../dto";
 
-export async function getCampaign(
-  name: string,
-  repo: Repository<Campaign>
-): Promise<Campaign | null> {
-  return await repo.findOne({ where: { name } });
+@Resolver()
+export class CampaignResolver {
+  private campaignRepo = myDataSource.getRepository(Campaign);
+
+  @Query(() => CampaignDto, { description: "Returns a campaign" })
+  async campaign(@Arg("name") name: string): Promise<CampaignDto | null> {
+    return await this.campaignRepo.findOne({ where: { name } });
+  }
 }

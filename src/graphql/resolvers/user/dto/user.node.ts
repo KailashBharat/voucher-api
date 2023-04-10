@@ -4,8 +4,8 @@ import { CampaignDto } from "../../campaign/dto/campaign.node";
 
 @ObjectType()
 export class UserDto {
-  @Field(() => ID)
-  id: number;
+  @Field()
+  id: string;
 
   @Field()
   name: string;
