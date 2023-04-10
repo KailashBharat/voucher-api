@@ -8,9 +8,9 @@ export class CreateCampaignResolver {
   private campaignRepo = myDataSource.getRepository(Campaign);
   private userRepo = myDataSource.getRepository(User);
 
-  @Authorized("ADMIN")
-  @Mutation(() => CampaignDto, { description: "Creates a campaign" })
-  async create(@Arg("input") input: CampaignInput): Promise<CampaignDto> {
+  // @Authorized("ADMIN")
+  @Mutation(() => CampaignDto)
+  async createCampaign(@Arg("input") input: CampaignInput): Promise<CampaignDto> {
     const { description, name, userId } = input;
 
     const user = await this.userRepo.findOneBy({ id: userId });
@@ -19,6 +19,10 @@ export class CreateCampaignResolver {
       throw new Error("Invalid userId");
     }
 
-    return await this.campaignRepo.create({ description, name, userId }).save();
+    const campaign = await this.campaignRepo.create({ description, name, userId }).save();
+    console.log({campaign})
+  
+  return campaign
   }
+
 }

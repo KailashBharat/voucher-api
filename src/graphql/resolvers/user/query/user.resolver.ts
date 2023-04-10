@@ -9,7 +9,7 @@ export class UserResolver {
 
   @Query(() => UserDto)
   async getUser(@Arg("name") name: string): Promise<UserDto | null> {
-    const user = await this.userRepo.findOne({ where: { name } });
+    const user = await this.userRepo.findOne({ where: { name }, relations: ["campaigns", "campaigns.createdBy", "vouchers", "vouchers.usedBy"] });
     return user;
   }
 }

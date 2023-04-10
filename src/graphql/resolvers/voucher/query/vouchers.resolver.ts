@@ -9,7 +9,7 @@ export class VouchersResolver {
 
   @Query(() => [VoucherDto])
   async vouchers(): Promise<VoucherDto[]> {
-    const vouchers = await this.voucherRepo.find();
+    const vouchers = await this.voucherRepo.find({relations: ["campaign", "usedBy"]});
     return vouchers;
   }
 }

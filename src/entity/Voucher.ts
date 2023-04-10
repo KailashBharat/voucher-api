@@ -22,10 +22,10 @@ export class Voucher extends BaseEntity {
   description: string;
 
   @Column()
-  campaignId: string
+  campaignId: string;
 
   @ManyToOne(() => Campaign, (campaign) => campaign.vouchers)
-  @JoinColumn({name: "campaignId"})
+  @JoinColumn({ name: "campaignId" })
   campaign: Campaign;
 
   @CreateDateColumn()
@@ -34,7 +34,7 @@ export class Voucher extends BaseEntity {
   @Column({ default: null, nullable: true })
   usedAt: Date;
 
-  @Column()
+  @Column({ nullable: true })
   userId: string;
 
   @ManyToOne(() => User, (user) => user.vouchers)

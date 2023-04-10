@@ -9,7 +9,7 @@ export class VoucherResolver {
 
   @Query(() => VoucherDto, { description: "Gets a voucher by id" })
   async voucherById(@Arg("id") id: string): Promise<VoucherDto | null> {
-    const voucher = await this.voucherRepo.findOne({ where: { id: id } });
+    const voucher = await this.voucherRepo.findOne({ where: { id: id }, relations: ["campaign", "usedBy"] });
     return voucher;
   }
 }

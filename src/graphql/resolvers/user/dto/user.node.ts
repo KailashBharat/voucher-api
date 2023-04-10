@@ -13,7 +13,7 @@ export class UserDto {
   @Field()
   email: string;
 
-  @Field(() => Number)
+  @Field()
   age: number;
 
   @Field()

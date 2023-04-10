@@ -10,6 +10,6 @@ export class CampaignsResolver {
   @Authorized("ADMIN")
   @Query(() => [CampaignDto], { description: "Returns all campaigns" })
   async campaigns(): Promise<CampaignDto[] | null> {
-    return await this.campaignRepo.find();
+    return await this.campaignRepo.find({relations: ["vouchers", "vouchers.campaign", "createdBy"]});
   }
 }
