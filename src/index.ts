@@ -8,7 +8,8 @@ import {
   ApolloServerPluginLandingPageProductionDefault,
 } from "@apollo/server/plugin/landingPage/default";
 import { ResolverData, buildSchema } from "type-graphql";
-import { Container } from "typeorm-typedi-extensions";
+import { Container } from "typedi";
+// import { Container } from "typeorm-typedi-extensions";
 import express from "express";
 import helmet from "helmet";
 import http from "http";

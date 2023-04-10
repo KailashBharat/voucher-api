@@ -9,8 +9,8 @@ import {
 import { Voucher } from "./Voucher";
 import { IsDate, isDate } from "class-validator";
 import { Field, ObjectType } from "type-graphql";
-
-@ObjectType()
+import { Service } from "typedi";
+@Service()
 @Entity()
 export class Campaign extends BaseEntity {
   @PrimaryGeneratedColumn()

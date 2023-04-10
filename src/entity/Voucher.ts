@@ -7,7 +7,9 @@ import {
   CreateDateColumn,
 } from "typeorm";
 import { Campaign } from "./Campaign";
+import { Service } from "typedi";
 
+@Service()
 @Entity()
 export class Voucher extends BaseEntity {
   @PrimaryGeneratedColumn()
