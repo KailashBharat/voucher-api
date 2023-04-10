@@ -22,7 +22,7 @@ export class CampaignDto {
   @IsDate()
   createdAt: Date;
 
-  @Field(()=>UserDto)
+  @Field(() => UserDto, { nullable: true })
   createdBy: UserDto;
 
   @Field({ defaultValue: null, nullable: true })

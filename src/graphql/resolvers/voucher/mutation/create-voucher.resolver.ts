@@ -15,15 +15,12 @@ export class CreateVoucherResolver {
   async createVoucher(
     @Arg("input") input: VoucherInput
   ): Promise<VoucherDto | null> {
-    const { name, description, campaign, userId } = input;
+    const { name, description, campaign} = input;
     const campaignExists = await this.campaignRepo.findOne({
       where: { name: campaign },
     });
-    const userExists = await this.userRepo.findOne({
-      where: { id: userId },
-    });
 
-    if (!campaignExists || !userExists) return null;
+    if (!campaignExists) return null;
 
     const voucher = await this.voucherRepo
       .create({
@@ -32,7 +29,6 @@ export class CreateVoucherResolver {
         description,
       })
       .save();
-    console.log({ voucher });
     return voucher;
   }
 }

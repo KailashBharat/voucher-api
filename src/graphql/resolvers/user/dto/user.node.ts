@@ -25,9 +25,9 @@ export class UserDto {
   @Field()
   createdAt: Date;
   
-  @Field(()=> [VoucherDto])
+  @Field(()=> [VoucherDto], {nullable:true})
   vouchers: VoucherDto[];
   
-  @Field(()=> [CampaignDto])
+  @Field(()=> [CampaignDto],{nullable:true})
   campaigns: CampaignDto[];
 }
