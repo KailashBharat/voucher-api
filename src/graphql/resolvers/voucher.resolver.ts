@@ -1,9 +1,10 @@
-import { Resolver, Query, Mutation, Arg } from "type-graphql";
+import { Resolver, Query, Mutation, Arg, Args } from "type-graphql";
 import { myDataSource } from "@/app-data-source";
 import { Voucher } from "@/entity/Voucher";
 import { Campaign } from "@/entity/Campaign";
 import { VoucherDto } from "./voucher/dto/voucher.node";
 import { CampaignDto } from "./campaign/dto/campaign.node";
+import { VoucherInput } from "./voucher/dto/voucher.input";
 
 @Resolver()
 export class VoucherResolver {
@@ -18,7 +19,6 @@ export class VoucherResolver {
   @Query(() => [VoucherDto])
   async vouchers(): Promise<VoucherDto[]> {
     const vouchers = await this.voucherRepo.find();
-    console.log({ vouchers });
     return vouchers;
   }
 
@@ -28,19 +28,17 @@ export class VoucherResolver {
   }
 
   @Query(() => VoucherDto, { description: "Gets a voucher by id" })
-  async getVoucher(@Arg("id") id: string): Promise<VoucherDto | null> {
+  async voucherById(@Arg("id") id: string): Promise<VoucherDto | null> {
     const voucher = await this.voucherRepo.findOne({ where: { id: +id } });
     return voucher;
   }
 
   @Mutation(() => VoucherDto)
   async createVoucher(
-    @Arg("name") name: string,
-    @Arg("description") description: string,
-    @Arg("campaign") campaign: string
+    @Arg("input") input: VoucherInput
   ): Promise<VoucherDto | null> {
     const campaignExists = await this.campaignRepo.findOne({
-      where: { name: campaign },
+      where: { name: input.campaign },
     });
 
     if (!campaignExists) return null;
@@ -48,8 +46,8 @@ export class VoucherResolver {
     const voucher = await this.voucherRepo
       .create({
         campaign: { ...campaignExists },
-        name,
-        description, 
+        name: input.name,
+        description: input.description,
       })
       .save();
 

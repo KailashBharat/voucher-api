@@ -1,6 +1,8 @@
 import { IsDate } from "class-validator";
 import { Field, ID, ObjectType } from "type-graphql";
 import { CampaignDto } from "../../campaign/dto/campaign.node";
+import { User } from "@/entity/User";
+import { UserDto } from "../../user/dto/user.node";
 
 @ObjectType()
 export class VoucherDto {
@@ -25,5 +27,5 @@ export class VoucherDto {
   usedAt: Date;
 
   @Field({ defaultValue: null, nullable: true })
-  usedBy: String;
+  usedBy: UserDto;
 }

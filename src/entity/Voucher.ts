@@ -7,6 +7,7 @@ import {
   CreateDateColumn,
 } from "typeorm";
 import { Campaign } from "./Campaign";
+import { User } from "./User";
 
 @Entity()
 export class Voucher extends BaseEntity {
@@ -19,18 +20,16 @@ export class Voucher extends BaseEntity {
   @Column()
   description: string;
 
-  // @Column()
-  // campaign: Campaign;
-
   @ManyToOne(() => Campaign, (campaign) => campaign.vouchers)
   campaign: Campaign;
-
+  
   @CreateDateColumn()
   createdAt: Date;
 
   @Column({ default: null, nullable: true })
   usedAt: Date;
-
-  @Column({ default: null, nullable: true })
-  usedBy: String;
+  
+  // @Column({ default: null, nullable: true })
+  @ManyToOne(() => User, (user) => user.vouchers)
+  usedBy: User;
 }

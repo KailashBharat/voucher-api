@@ -5,12 +5,11 @@ import {
   OneToMany,
   BaseEntity,
   CreateDateColumn,
+  ManyToOne,
 } from "typeorm";
 import { Voucher } from "./Voucher";
-import { IsDate, isDate } from "class-validator";
-import { Field, ObjectType } from "type-graphql";
+import { User } from "./User";
 
-@ObjectType()
 @Entity()
 export class Campaign extends BaseEntity {
   @PrimaryGeneratedColumn()
@@ -27,6 +26,9 @@ export class Campaign extends BaseEntity {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @ManyToOne(() => User, (user) => user.campaigns)
+  createdBy: User;
 
   @Column({ default: null, nullable: true })
   endsAt: Date;
