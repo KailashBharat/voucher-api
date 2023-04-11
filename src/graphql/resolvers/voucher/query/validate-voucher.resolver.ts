@@ -7,12 +7,17 @@ import { VoucherDto } from "../dto";
 export class ValidateVoucherResolver {
   private voucherRepo = myDataSource.getRepository(Voucher);
 
-  @Query(() => VoucherDto, { description: "Gets a voucher by id" })
-  async validate(@Arg("id") id: string): Promise<VoucherDto | null> {
+  @Query(() => Boolean, { description: "Validates if a voucher is unused" })
+  async validate(@Arg("id") id: string): Promise<Boolean> {
     const voucher = await this.voucherRepo.findOne({
       where: { id },
       relations: ["campaign", "usedBy"],
     });
-    return voucher;
+
+    if((voucher && voucher.usedBy) || !voucher){
+      return false
+    }else if(voucher && !voucher.usedBy){
+      return true
+    }else return false
   }
 }
