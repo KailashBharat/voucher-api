@@ -7,7 +7,7 @@ import { CampaignDto } from "../dto/campaign.node";
 export class CampaignsResolver {
   private campaignRepo = myDataSource.getRepository(Campaign);
 
-  @Authorized("ADMIN")
+  // @Authorized("ADMIN")
   @Query(() => [CampaignDto], { description: "Returns all campaigns" })
   async campaigns(): Promise<CampaignDto[] | null> {
     return await this.campaignRepo.find({relations: ["vouchers", "vouchers.campaign", "createdBy"]});
