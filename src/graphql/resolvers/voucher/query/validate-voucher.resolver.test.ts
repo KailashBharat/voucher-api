@@ -43,7 +43,7 @@ describe("ValidateVoucherResolver", () => {
     server
       .query(query)
       .then((res) => {
-        const data= res?.data?.voucherById as any;
+        const data= res?.data?.validate as any;
         expect(data).toBeUndefined();
       })
       .catch((e) => console.error(e));

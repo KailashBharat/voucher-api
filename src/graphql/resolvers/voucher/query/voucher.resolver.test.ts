@@ -22,13 +22,13 @@ beforeAll(async () => {
 describe("VoucherResolver", () => {
   it("should return a voucher's name", async () => {
     const query = `
-    query ($name: String!) {
-        voucherById(name: $name) {
+    query ($id: String!) {
+        voucherById(id: $id) {
           name
         }
       }`;
     server
-      .query(query, { name: "Hello" })
+      .query(query, { id: "Hello" })
       .then((res) => {
         const data: { name: string } = res?.data?.voucherById as any;
         expect(data.name).toBe("Hello");
@@ -54,12 +54,12 @@ describe("VoucherResolver", () => {
 
   it("should return undefined", async () => {
     const query = `
-    query ($name: String!) {
-        voucherById(name: $name) {
+    query ($id: String!) {
+        voucherById(id: $id) {
         }
       }`;
     server
-      .query(query, { name: "Hello" })
+      .query(query, { id: "Hello" })
       .then((res) => {
         const data: { name: string } = res?.data?.voucherById as any;
         expect(data).toBeUndefined();
