@@ -9,7 +9,7 @@ export class UpdateUserResolver {
   private readonly userRepo = myDataSource.getRepository(User);
 
   @Mutation(() => Number)
-  async updateUser(@Arg("input") input: UpdateUserInput): Promise<Promise<number | null| undefined>> {
+  async updateUser(@Arg("input") input: UpdateUserInput): Promise<number | null| undefined> {
     const {id, name, email, age, isAdmin} = input
     const user = await this.userRepo
       .update({id},{
