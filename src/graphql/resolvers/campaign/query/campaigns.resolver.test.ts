@@ -21,7 +21,7 @@ beforeAll(async () => {
   server = mockServer(schema, mocks);
 });
 
-describe("CampaignResolver", () => {
+describe("CampaignsResolver", () => {
   it("should return a list of users' names", async () => {
     const query = `
     query {

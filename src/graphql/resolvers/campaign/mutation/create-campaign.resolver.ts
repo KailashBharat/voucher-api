@@ -29,8 +29,6 @@ export class CreateCampaignResolver {
         ...(endsAt ? { endsAt: new Date(endsAt) } : {}),
       })
       .save();
-    console.log({ campaign });
-
     return campaign;
   }
 }
