@@ -1,4 +1,6 @@
 import { CreateVoucherResolver } from "./mutation/create-voucher.resolver"
+import { DeleteVoucherResolver } from "./mutation/delete-voucher.resolver"
+import { UpdateVoucherResolver } from "./mutation/update-voucher.resolver"
 import { VoucherResolver } from "./query/voucher.resolver"
 import { VouchersResolver } from "./query/vouchers.resolver"
 
@@ -9,5 +11,7 @@ export const VoucherGraphQLResolvers = [
     VoucherResolver,
     VouchersResolver,
     //  Mutations
-    CreateVoucherResolver
+    CreateVoucherResolver,
+    DeleteVoucherResolver,
+    UpdateVoucherResolver
 ]

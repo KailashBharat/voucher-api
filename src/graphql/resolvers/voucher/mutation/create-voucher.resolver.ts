@@ -15,9 +15,9 @@ export class CreateVoucherResolver {
   async createVoucher(
     @Arg("input") input: VoucherInput
   ): Promise<VoucherDto | null> {
-    const { name, description, campaign} = input;
+    const { name, description, campaignId} = input;
     const campaignExists = await this.campaignRepo.findOne({
-      where: { name: campaign },
+      where: { id: campaignId },
     });
 
     if (!campaignExists) return null;

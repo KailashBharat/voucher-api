@@ -13,5 +13,5 @@ export class VoucherInput {
   
   @Field()
   @IsString()
-  campaign: string;
+  campaignId: string;
 }

@@ -16,18 +16,18 @@ export class UserDto {
   @Field()
   age: number;
 
-  @Field()
+  @Field({ nullable: true })
   ip: string;
 
   @Field()
   role: string;
-  
+
   @Field()
   createdAt: Date;
-  
-  @Field(()=> [VoucherDto], {nullable:true})
+
+  @Field(() => [VoucherDto], { nullable: true })
   vouchers: VoucherDto[];
-  
-  @Field(()=> [CampaignDto],{nullable:true})
+
+  @Field(() => [CampaignDto], { nullable: true })
   campaigns: CampaignDto[];
 }

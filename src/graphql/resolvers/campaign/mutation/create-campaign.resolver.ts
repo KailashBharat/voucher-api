@@ -3,6 +3,7 @@ import { myDataSource } from "@/app-data-source";
 import { Campaign } from "@/entity/Campaign";
 import { CampaignDto, CampaignInput } from "../dto";
 import { User } from "@/entity/User";
+import { throwHttpGraphQLError } from "apollo-server-core/dist/runHttpQuery";
 @Resolver()
 export class CreateCampaignResolver {
   private campaignRepo = myDataSource.getRepository(Campaign);
@@ -10,19 +11,26 @@ export class CreateCampaignResolver {
 
   // @Authorized("ADMIN")
   @Mutation(() => CampaignDto)
-  async createCampaign(@Arg("input") input: CampaignInput): Promise<CampaignDto> {
-    const { description, name, userId } = input;
+  async createCampaign(
+    @Arg("input") input: CampaignInput
+  ): Promise<CampaignDto> {
+    const { description, name, userId, endsAt } = input;
 
     const user = await this.userRepo.findOneBy({ id: userId });
-
     if (!user) {
-      throw new Error("Invalid userId");
+      throw Error("Invalid User");
     }
 
-    const campaign = await this.campaignRepo.create({ description, name, userId }).save();
-    console.log({campaign})
-  
-  return campaign
-  }
+    const campaign = await this.campaignRepo
+      .create({
+        description,
+        name,
+        userId,
+        ...(endsAt ? { endsAt: new Date(endsAt) } : {}),
+      })
+      .save();
+    console.log({ campaign });
 
+    return campaign;
+  }
 }
