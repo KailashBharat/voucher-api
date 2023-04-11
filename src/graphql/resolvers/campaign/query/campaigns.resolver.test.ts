@@ -1,10 +1,10 @@
 import { CampaignsResolver } from "./campaigns.resolver";
 import { buildSchema } from "type-graphql";
-import { addMocksToSchema, mockServer } from "@graphql-tools/mock";
+import { addMocksToSchema, mockServer, IMockServer } from "@graphql-tools/mock";
 import { GraphQLSchema, graphql } from "graphql";
 
 let schema: GraphQLSchema;
-let server: any;
+let server: IMockServer;
 let schemaWithMocks: any;
 
 beforeAll(async () => {
@@ -29,10 +29,23 @@ describe("CampaignResolver", () => {
         name
       }
     }`;
-    graphql({ schema: schemaWithMocks, source: query })
+    server.query(query).then((res) => {
+      const data: { name: string }[] = res?.data?.campaigns as any;
+      expect(data[0].name).toBe("Hello");
+    });
+  });
+
+  it("should return undefined", async () => {
+    const query = `
+    query {
+      campaigns {
+      }
+    }`;
+    server
+      .query(query)
       .then((res) => {
         const data: { name: string }[] = res?.data?.campaigns as any;
-        expect(data[0].name).toBe("Hello");
+        expect(data).toBeUndefined();
       })
       .catch((e) => console.error(e));
   });
