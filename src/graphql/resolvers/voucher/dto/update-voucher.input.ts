@@ -15,6 +15,10 @@ export class UpdateVoucherInput {
   @IsString()
   campaignId?: string;
 
+  @Field({ nullable: true })
+  @IsString()
+  userId?: string;
+
   @Field()
   @IsString()
   id: string;

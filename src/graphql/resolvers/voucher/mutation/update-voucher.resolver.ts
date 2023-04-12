@@ -14,7 +14,7 @@ export class UpdateVoucherResolver {
   async updateVoucher(
     @Arg("input") input: UpdateVoucherInput
   ): Promise<Number | null | undefined> {
-    const { name, description, campaignId, id } = input;
+    const { name, description, campaignId, userId, id } = input;
     const campaignExists = await this.campaignRepo.findOne({
       where: { id: campaignId },
     });
@@ -26,6 +26,7 @@ export class UpdateVoucherResolver {
       {
         ...(description ? { description } : {}),
         ...(name ? { name } : {}),
+        ...(userId ? { userId } : {}),
         ...(campaignExists ? { campaignId: campaignExists.id } : {}),
       }
     );
