@@ -43,5 +43,8 @@ One of our customers wants to have a REST or GraphQL API where customers can red
 3. yarn (install node_modules)
 4. yarn dev (run development server)
 
+## Good to know
+When using the graphql Sandbox listed in the Resources section, be sure to increment the 'max' property of the rate limiter in src/index.ts. The Sandbox env pings the server every second, so the limit will be reached very quickly.
+
 ## Resources
 - [Graphql Sanbox env](https://flyby-locations-sub.herokuapp.com/)
