@@ -11,9 +11,10 @@ import express from "express";
 import helmet from "helmet";
 import http from "http";
 import cors from "cors";
+import rateLimit from 'express-rate-limit'
 
 import { buildSchema } from "type-graphql";
-import winston from "winston";
+import depthLimit from "graphql-depth-limit"
 import morgan from "morgan";
 
 import { myDataSource } from "./app-data-source";
@@ -38,8 +39,15 @@ async function main() {
   const app = express();
   const port = process.env.PORT || 3000;
 
+  const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15min
+    max: 100, 
+    standardHeaders: true, 
+    legacyHeaders: false, 
+  })
   const httpServer = http.createServer(app);
   const apolloServer = new ApolloServer<Context>({
+    validationRules: [depthLimit(10)],
     schema,
     plugins: [
       process.env.NODE_ENV === "production"
@@ -56,6 +64,7 @@ async function main() {
 
   app.disable("x-powered-by");
   app.use(helmet());
+  app.use(limiter);
   app.use(
     morgan(":method :url :status :res[content-length] - :response-time ms")
   );
