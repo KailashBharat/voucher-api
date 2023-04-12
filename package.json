@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && tsc-alias",
     "dev": "nodemon",
-    "prod": "node dist/index.js",
+    "prod": "yarn build && node dist/index.js",
     "test": "jest",
-    "docker:mysql": "dotenv -- cross-var docker run -d --name voucher-mysql -p %MYSQL_PORT%:3306 -e MYSQL_ROOT_PASSWORD=%MYSQL_ROOT_PASSWORD% mysql:latest",
-    "docker:postgres": "dotenv -- cross-var docker run -d --name voucher-postgres -p %POSTGRES_PORT%:5432 -e POSTGRES_PASSWORD=%MYSQL_PASSWORD% -e POSTGRES_USER=%MYSQL_USER% -e POSTGRES_DB=%MYSQL_DATABASE% postgres:latest"
+    "docker:mysql": "dotenv -- cross-var docker run -d --name voucher-mysql -p %DB_PORT%:3306 -e MYSQL_ROOT_PASSWORD=%DB_ROOT_PASSWORD% mysql:latest",
+    "docker:postgres": "dotenv -- cross-var docker run -d --name voucher-postgres -p %DB_PORT%:5432 -e POSTGRES_PASSWORD=%DB_PASSWORD% -e POSTGRES_USER=%DB_USER% -e POSTGRES_DB=%DB_DATABASE% postgres:latest"
   },
   "keywords": [],
   "author": "",
@@ -48,6 +49,7 @@
     "dotenv-cli": "^7.2.1",
     "nodemon": "^2.0.22",
     "ts-jest": "^29.1.0",
+    "tsc-alias": "^1.8.5",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.0.4"
   }

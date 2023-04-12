@@ -30,5 +30,18 @@ One of our customers wants to have a REST or GraphQL API where customers can red
 - The application, zipped, with installation/deployment instructions.
 - A short summary/explanation of the security measurements embedded in the application and what they will be effective against.
 
+## Run API
+
+### Prerequisites
+
+- Docker
+- Node
+
+### Todo
+1. Create .env file and fill in the values (see .env.example)
+2. Run yarn docker:postgres or yarn docker:mysql
+3. yarn (install node_modules)
+4. yarn dev (run development server)
+
 ## Resources
 - [Graphql Sanbox env](https://flyby-locations-sub.herokuapp.com/)
