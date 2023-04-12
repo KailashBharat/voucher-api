@@ -19,3 +19,7 @@ Large nested queries are dangerous because they're very expensive to compute. It
 ### Input validation
 
 Validating input prevents users from entering malicious data into our system.
+
+### User validation on Dangerous Operations (Delete)
+
+Validating user before some dangerous operation is done. This action makes sure that only the user that created the record can alter/remove it.

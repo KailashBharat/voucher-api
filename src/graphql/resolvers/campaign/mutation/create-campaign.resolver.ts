@@ -9,7 +9,6 @@ export class CreateCampaignResolver {
   private campaignRepo = myDataSource.getRepository(Campaign);
   private userRepo = myDataSource.getRepository(User);
 
-  // @Authorized("ADMIN")
   @Mutation(() => CampaignDto)
   async createCampaign(
     @Arg("input") input: CampaignInput

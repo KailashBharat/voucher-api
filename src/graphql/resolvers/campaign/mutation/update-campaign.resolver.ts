@@ -1,14 +1,12 @@
-import { Resolver, Mutation, Arg, Authorized } from "type-graphql";
+import { Resolver, Mutation, Arg} from "type-graphql";
 import { myDataSource } from "@/app-data-source";
 import { Campaign } from "@/entity/Campaign";
 import { User } from "@/entity/User";
 import { UpdateCampaignInput } from "../dto/update-campaign.input";
-import { UpdateResult } from "typeorm";
 
 @Resolver()
 export class UpdateCampaignResolver {
   private campaignRepo = myDataSource.getRepository(Campaign);
-  private userRepo = myDataSource.getRepository(User);
 
   @Mutation(() => Number)
   async updateCampaign(
