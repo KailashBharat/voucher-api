@@ -25,7 +25,7 @@ import { GraphQLResolvers } from "./graphql";
 async function main() {
   const connection = await myDataSource.initialize();
 
-  if (connection?.isInitialized) {
+  if (connection.isInitialized) {
     console.log("Data source has been initialized");
   } else {
     throw new Error("Error during Data Source initialization");

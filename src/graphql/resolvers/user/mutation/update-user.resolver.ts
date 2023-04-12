@@ -1,7 +1,6 @@
 import { Arg, Mutation, Resolver } from "type-graphql";
 import { myDataSource } from "@/app-data-source";
 import { User } from "@/entity/User";
-import { UpdateResult } from "typeorm";
 import { UpdateUserInput } from "../dto/update-user.input";
 
 @Resolver()

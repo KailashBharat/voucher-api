@@ -1,8 +1,8 @@
 import "reflect-metadata"
 import { CreateVoucherResolver } from "./create-voucher.resolver";
 import { buildSchema } from "type-graphql";
-import { addMocksToSchema, mockServer, IMockServer } from "@graphql-tools/mock";
-import { GraphQLSchema, graphql } from "graphql";
+import {  mockServer, IMockServer } from "@graphql-tools/mock";
+import { GraphQLSchema} from "graphql";
 import { VouchersResolver } from "../query/vouchers.resolver";
 
 let schema: GraphQLSchema;

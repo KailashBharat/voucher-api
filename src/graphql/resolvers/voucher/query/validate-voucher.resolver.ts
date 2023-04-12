@@ -1,7 +1,6 @@
 import { Resolver, Query, Arg } from "type-graphql";
 import { myDataSource } from "@/app-data-source";
 import { Voucher } from "@/entity/Voucher";
-import { VoucherDto } from "../dto";
 
 @Resolver()
 export class ValidateVoucherResolver {

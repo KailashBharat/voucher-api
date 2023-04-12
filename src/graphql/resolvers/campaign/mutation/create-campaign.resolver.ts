@@ -1,9 +1,9 @@
-import { Resolver, Mutation, Arg, Authorized } from "type-graphql";
+import { Resolver, Mutation, Arg} from "type-graphql";
 import { myDataSource } from "@/app-data-source";
 import { Campaign } from "@/entity/Campaign";
 import { CampaignDto, CampaignInput } from "../dto";
 import { User } from "@/entity/User";
-import { throwHttpGraphQLError } from "apollo-server-core/dist/runHttpQuery";
+
 @Resolver()
 export class CreateCampaignResolver {
   private campaignRepo = myDataSource.getRepository(Campaign);

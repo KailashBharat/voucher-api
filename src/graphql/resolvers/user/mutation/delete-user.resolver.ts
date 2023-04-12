@@ -1,9 +1,6 @@
 import { Arg, Mutation, Resolver } from "type-graphql";
-import { UserInput } from "../dto";
 import { myDataSource } from "@/app-data-source";
 import { User } from "@/entity/User";
-import { UserDto } from "../dto/user.node";
-import { DeleteResult } from "typeorm";
 
 @Resolver()
 export class DeleteUserResolver {

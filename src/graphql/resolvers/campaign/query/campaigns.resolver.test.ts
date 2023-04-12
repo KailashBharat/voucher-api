@@ -5,7 +5,6 @@ import { GraphQLSchema, graphql } from "graphql";
 
 let schema: GraphQLSchema;
 let server: IMockServer;
-let schemaWithMocks: any;
 
 beforeAll(async () => {
   schema = await buildSchema({
@@ -17,7 +16,6 @@ beforeAll(async () => {
     String: () => "Hello",
     DateTime: () => new Date(),
   };
-  schemaWithMocks = addMocksToSchema({ schema, mocks });
   server = mockServer(schema, mocks);
 });
 

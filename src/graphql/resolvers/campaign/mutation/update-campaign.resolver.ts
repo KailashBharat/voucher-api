@@ -10,7 +10,6 @@ export class UpdateCampaignResolver {
   private campaignRepo = myDataSource.getRepository(Campaign);
   private userRepo = myDataSource.getRepository(User);
 
-  // @Authorized("ADMIN")
   @Mutation(() => Number)
   async updateCampaign(
     @Arg("input") input: UpdateCampaignInput

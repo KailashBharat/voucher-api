@@ -1,8 +1,8 @@
 import "reflect-metadata"
 import { CreateUserResolver } from "./create-user.resolver";
 import { buildSchema } from "type-graphql";
-import { addMocksToSchema, mockServer, IMockServer } from "@graphql-tools/mock";
-import { GraphQLSchema, graphql } from "graphql";
+import { mockServer, IMockServer } from "@graphql-tools/mock";
+import { GraphQLSchema} from "graphql";
 import { UsersResolver } from "../query/users.resolver";
 
 let schema: GraphQLSchema;

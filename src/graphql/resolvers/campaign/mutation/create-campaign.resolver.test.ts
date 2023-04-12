@@ -1,12 +1,11 @@
 import { CreateCampaignResolver } from "./create-campaign.resolver";
 import { buildSchema } from "type-graphql";
 import { addMocksToSchema, mockServer, IMockServer } from "@graphql-tools/mock";
-import { GraphQLSchema, graphql } from "graphql";
+import { GraphQLSchema } from "graphql";
 import { CampaignResolver } from "../query/campaign.resolver";
 
 let schema: GraphQLSchema;
 let server: IMockServer;
-let schemaWithMocks: any;
 
 beforeAll(async () => {
   schema = await buildSchema({
@@ -18,7 +17,6 @@ beforeAll(async () => {
     String: () => "Hello",
     DateTime: () => new Date(),
   };
-  schemaWithMocks = addMocksToSchema({ schema, mocks });
   server = mockServer(schema, mocks);
 });
 

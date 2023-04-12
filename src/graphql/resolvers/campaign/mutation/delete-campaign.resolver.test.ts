@@ -1,5 +1,5 @@
 import { buildSchema } from "type-graphql";
-import { addMocksToSchema, mockServer, IMockServer } from "@graphql-tools/mock";
+import { mockServer, IMockServer } from "@graphql-tools/mock";
 import { GraphQLSchema} from "graphql";
 import { CampaignResolver } from "../query/campaign.resolver";
 import { DeleteCampaignResolver } from "./delete-campaign.resolver";
